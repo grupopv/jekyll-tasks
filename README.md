@@ -1,6 +1,6 @@
 # Jekyll tasks
 
-A set of tasks to help you on your Jekyll sites.
+A set of rake tasks to help you on your Jekyll sites.
 
 ## Installation
 
