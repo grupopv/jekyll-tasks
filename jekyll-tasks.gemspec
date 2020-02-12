@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Edgar Tinajero']
   spec.email         = ['24572406+cetinajero@users.noreply.github.com']
 
-  spec.summary       = 'A set of tasks to help you on your Jekyll sites.'
+  spec.summary       = 'A set of rake tasks to help you on your Jekyll sites.'
   spec.homepage      = 'https://github.com/grupopv/jekyll-tasks/'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  # Specify which files should be added to the gem when it is released.
-  # `git ls-files -z` loads the files that have been added into git.
+  all_files          = `git ls-files -z`.split("\x0")
   spec.files         = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject do |f|
-      f.match(%r{^(test|spec|features)/})
+    all_files.reject do |f|
+      excluded_files = %r{^(test|spec|features)/}
+      f.match(excluded_files)
     end
   end
 end
