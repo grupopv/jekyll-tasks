@@ -31,7 +31,7 @@ DEPENDENCIES
   jekyll-tasks!
   minitest (~> 5.14)
   rake (~> 13.0)
-  rubocop
+  rubocop (~> 0.79)
 
 BUNDLED WITH
    2.1.2
