@@ -1,4 +1,6 @@
-require "jekyll/tasks/version"
+# frozen_string_literal: true
+
+require 'jekyll/tasks/version'
 
 module Jekyll
   module Tasks

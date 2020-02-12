@@ -1,4 +1,6 @@
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "jekyll/tasks"
+# frozen_string_literal: true
 
-require "minitest/autorun"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'jekyll/tasks'
+
+require 'minitest/autorun'
