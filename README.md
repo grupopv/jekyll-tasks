@@ -1,5 +1,10 @@
 # Jekyll tasks
 
+[![Gem Version](https://badge.fury.io/rb/jekyll-tasks.svg)](https://rubygems.org/gems/jekyll-tasks)
+[![CI Status](https://travis-ci.org/grupopv/jekyll-tasks.svg?branch=master)](https://travis-ci.org/grupopv/jekyll-tasks)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=grupopv/jekyll-tasks)](https://github.com/grupopv/jekyll-tasks/pulls?utf8=✓&q=is%3Apr+author%3Aapp%2Fdependabot-preview)
+[![Gem Downloads](https://ruby-gem-downloads-badge.herokuapp.com/jekyll-tasks?type=total&total_label=)](https://rubygems.org/gems/jekyll-tasks)
+
 A set of rake tasks to help you on your Jekyll sites.
 
 ## Installation
