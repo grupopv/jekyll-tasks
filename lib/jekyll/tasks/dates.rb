@@ -4,7 +4,7 @@ require 'date'
 
 module Jekyll
   module Tasks
-    # Customers module to configure jekyll's bundle per website
+    # Dates module to configure jekyll's bundle per website
     module Dates
       extend self
 

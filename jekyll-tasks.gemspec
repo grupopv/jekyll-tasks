@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   all_files          = `git ls-files -z`.split("\x0")
   spec.files         = Dir.chdir(File.expand_path(__dir__)) do
     all_files.reject do |f|
-      excluded_files = %r{^(test|spec|features)/}
+      excluded_files = %r{^(_data|.github|bin|test|spec|features)/}
       f.match(excluded_files)
     end
   end
