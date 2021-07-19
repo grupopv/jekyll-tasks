@@ -6,9 +6,9 @@ module Jekyll
     module Products
       extend self
 
-      def products_filename_list
+      def filename_list
         products = []
-        products_path_list.each do |product|
+        path_list.each do |product|
           product = product
                     .gsub('./_data/api/hana/products/', '')
                     .gsub('.yml', '')
@@ -17,9 +17,9 @@ module Jekyll
         products
       end
 
-      def products_model_list
+      def model_list
         products = []
-        products_path_list.each do |product|
+        path_list.each do |product|
           data = YAML.load_file(product)
           products << data['title']
         end
@@ -28,7 +28,7 @@ module Jekyll
 
       private
 
-      def products_path_list
+      def path_list
         Dir.glob('./_data/api/hana/products/*.yml').to_a.sort
       end
     end
