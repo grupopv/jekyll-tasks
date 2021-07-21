@@ -10,8 +10,8 @@ module Jekyll
 
       def all_products_with_related
         errors = []
-        api = related_api_data
-        Products.products_model_list.each do |product|
+        api = api_data
+        Products.model_list.each do |product|
           if api[product]
             count = api[product].count
             errors << "Only has #{count} related products: #{product}" if count < MINIMUM_RELATED_PRODUCTS
@@ -23,7 +23,7 @@ module Jekyll
 
       private
 
-      def related_api_data
+      def api_data
         YAML.load_file('./_data/api/yaml/related/products.yml')
       end
     end
