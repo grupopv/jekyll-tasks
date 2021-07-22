@@ -8,7 +8,7 @@ module Jekyll
 
       def search_conflicts
         conflicts = []
-        conflicts << search_conflicts_with_properties
+        conflicts << (search_conflicts_with_properties | search_conflicts_without_properties)
         conflicts.flatten!
       end
 
@@ -30,6 +30,17 @@ module Jekyll
         conflicts
       end
 
+      def search_conflicts_without_properties
+        conflicts = []
+
+        Collections.get.each do |collection|
+          data = search_without_properties(collection) unless collection == 'pages'
+          conflicts << data unless data.nil?
+        end
+
+        conflicts
+      end
+
       def per_collection(properties = ['name'])
         result = []
         Collections.get.each do |collection|
@@ -40,8 +51,19 @@ module Jekyll
         result
       end
 
-      def search_properties(collection, properties)
-        result = []
+      def search_without_properties(collection)
+        conflicts = []
+
+        files = markdown_files collection
+        files.each do |file|
+          data = YAML.load_file(file)
+          conflicts << analyze_conflicts_without_properties(data)
+        end
+
+        conflicts
+      end
+
+      def search_properties(collection, properties, result = [])
         files = markdown_files collection
         files.each do |file|
           data = YAML.load_file(file)
@@ -54,9 +76,22 @@ module Jekyll
 
       private
 
-      def analyze_conflicts(collection, name, father)
-        conflicts = []
+      def analyze_conflicts_without_properties(data, conflicts = [])
+        conflicts << "Product without father: '#{data['title']}'" if Products.product_without_father data
+        conflicts << "Menu without name: '#{data['title']}'" if menu_without_name data
+        conflicts << "Menu without father: '#{data['title']}'" if menu_without_father data
+        conflicts
+      end
 
+      def menu_without_name(data)
+        data['layout'] == 'grid' && data['menu-name'].nil?
+      end
+
+      def menu_without_father(data)
+        data['layout'] == 'grid' && data['menu-father'].nil? && data['permalink'].nil?
+      end
+
+      def analyze_conflicts(collection, name, father, conflicts = [])
         array = name - father
         conflicts << "There are some unused menus at #{collection} collection: #{array}" unless array.empty?
 
@@ -71,12 +106,9 @@ module Jekyll
       def search_property(result, data, property)
         value = data["menu-#{property}"]
         index = search_hash(result, property)
-        if index
-          result[index][property] << value unless value.nil?
-        else
-          hash = { property => value.nil? ? [] : [value] }
-          result << hash
-        end
+
+        (result[index][property] << value unless value.nil?) if index
+        (result << { property => value.nil? ? [] : [value] }) unless index
       end
 
       def order_properties(result, properties)
