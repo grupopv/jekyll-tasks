@@ -6,12 +6,6 @@ module Jekyll
     module Menus
       extend self
 
-      def print_conflicts
-        conflicts = search_conflicts
-        puts conflicts
-        conflicts.empty?
-      end
-
       def search_conflicts
         conflicts = []
         conflicts << search_conflicts_with_properties

@@ -64,11 +64,6 @@ module Jekyll
           'There are some unused menus at collection2 collection: ["submenu-2"]'
         ], result
       end
-
-      def test_print_conflicts
-        result = Menus.print_conflicts
-        assert_equal false, result
-      end
     end
   end
 end
