@@ -61,13 +61,11 @@ module Jekyll
         assert_equal [
           'There are some unused menus at collection1 collection: ["submenu-1"]',
           'There are some products pointed to non-existent menus at collection1 collection: ["submenu-lost"]',
-          'There are some unused menus at collection2 collection: ["submenu-2"]'
+          'There are some unused menus at collection2 collection: ["submenu-2"]',
+          "Menu without father: 'Menu without father'",
+          "Menu without name: 'Menu without name'",
+          "Product without father: 'model1'"
         ], result
-      end
-
-      def test_print_conflicts
-        result = Menus.print_conflicts
-        assert_equal false, result
       end
     end
   end
