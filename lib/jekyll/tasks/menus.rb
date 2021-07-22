@@ -14,6 +14,13 @@ module Jekyll
 
       def search_conflicts
         conflicts = []
+        conflicts << search_conflicts_with_properties
+        conflicts.flatten!
+      end
+
+      def search_conflicts_with_properties
+        conflicts = []
+
         per_collection(%w[name father]).each do |el|
           properties = el['properties']
 
@@ -23,8 +30,9 @@ module Jekyll
           index = search_hash(properties, 'father')
           father = index.nil? ? '' : properties[index]['father']
 
-          analyze_conflicts el['collection'], conflicts, name, father if name != father
+          conflicts << analyze_conflicts(el['collection'], name, father) if name != father
         end
+
         conflicts
       end
 
@@ -52,7 +60,9 @@ module Jekyll
 
       private
 
-      def analyze_conflicts(collection, conflicts, name, father)
+      def analyze_conflicts(collection, name, father)
+        conflicts = []
+
         array = name - father
         conflicts << "There are some unused menus at #{collection} collection: #{array}" unless array.empty?
 
