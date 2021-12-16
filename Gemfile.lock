@@ -10,7 +10,7 @@ GEM
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
     docile (1.4.0)
-    minitest (5.14.4)
+    minitest (5.15.0)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
@@ -44,7 +44,7 @@ PLATFORMS
 DEPENDENCIES
   codecov (~> 0.6)
   jekyll-tasks!
-  minitest (~> 5.14)
+  minitest (~> 5.15)
   rake (~> 13.0)
   rubocop (~> 1.21)
 
