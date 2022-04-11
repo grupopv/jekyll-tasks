@@ -21,6 +21,17 @@ module Jekyll
         errors.empty? ? 'OK' : errors
       end
 
+      def all_related_exist
+        errors = []
+        products = Products.filename_list
+        api_data.each do |key, related|
+          related.each do |product|
+            errors << "Related '#{product}' (declared @ '#{key}') doesn't exist" unless products.include? product
+          end
+        end
+        errors.empty? ? 'OK' : errors
+      end
+
       private
 
       def api_data
