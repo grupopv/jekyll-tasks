@@ -8,14 +8,14 @@ module Jekyll
 
       MINIMUM_RELATED_PRODUCTS = 5
 
-      def all_products_with_related
+      def all_products_with_related(api = api_data)
         errors = []
-        api = api_data
         Products.model_list.each do |product|
           if api[product]
             count = api[product].count
             errors << "Only has #{count} related products: #{product}" if count < MINIMUM_RELATED_PRODUCTS
-          else errors << "Doesn't have related products: #{product}"
+          else
+            errors << "Doesn't have related products: #{product}"
           end
         end
         errors.empty? ? 'OK' : errors
