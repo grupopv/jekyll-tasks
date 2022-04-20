@@ -17,7 +17,9 @@ module Jekyll
         result = Related.all_related_exist
         assert_equal [
           "'PRODUCT/1' has duplicate related products",
-          "Related 'product-6' (declared @ 'PRODUCT/1') doesn't exist"
+          "Related 'product-6' (declared @ 'PRODUCT/1') doesn't exist",
+          "Inception detected @ 'PRODUCT/4' related product",
+          "Inception detected @ 'PRODUCT/5' related product"
         ], result
       end
     end
