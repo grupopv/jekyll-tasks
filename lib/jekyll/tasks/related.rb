@@ -28,6 +28,7 @@ module Jekyll
           errors << "'#{key}' has duplicate related products" if related.length != related.uniq.length
           related.each do |product|
             errors << "Related '#{product}' (declared @ '#{key}') doesn't exist" unless products.include? product
+            errors << "Inception detected @ '#{key}' related product" if inception_detected?(products, product, key)
           end
         end
         errors.empty? ? 'OK' : errors
@@ -37,6 +38,10 @@ module Jekyll
 
       def api_data
         YAML.load_file('./_data/api/yaml/related/products.yml')
+      end
+
+      def inception_detected?(filename_list, filename, title)
+        filename_list.include?(filename) && Products.title(filename) == title
       end
     end
   end

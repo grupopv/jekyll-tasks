@@ -6,12 +6,15 @@ module Jekyll
     module Products
       extend self
 
+      PRODUCTS_PATH = './_data/api/hana/products/'
+      EXTENSION     = '.yml'
+
       def filename_list
         products = []
         path_list.each do |product|
           product = product
-                    .gsub('./_data/api/hana/products/', '')
-                    .gsub('.yml', '')
+                    .gsub(PRODUCTS_PATH, '')
+                    .gsub(EXTENSION, '')
           products << product
         end
         products
@@ -30,10 +33,15 @@ module Jekyll
         data['layout'].nil? && data['menu-father'].nil?
       end
 
+      def title(product)
+        data = YAML.load_file("#{PRODUCTS_PATH}#{product}#{EXTENSION}")
+        data['title']
+      end
+
       private
 
       def path_list
-        Dir.glob('./_data/api/hana/products/*.yml').to_a.sort
+        Dir.glob("#{PRODUCTS_PATH}*#{EXTENSION}").to_a.sort
       end
     end
   end
