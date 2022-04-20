@@ -25,6 +25,7 @@ module Jekyll
         errors = []
         products = Products.filename_list
         api_data.each do |key, related|
+          errors << "'#{key}' has duplicate related products" if related.length != related.uniq.length
           related.each do |product|
             errors << "Related '#{product}' (declared @ '#{key}') doesn't exist" unless products.include? product
           end
