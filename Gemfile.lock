@@ -10,7 +10,7 @@ GEM
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
     docile (1.4.0)
-    minitest (5.16.0)
+    minitest (5.16.1)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
