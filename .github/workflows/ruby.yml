@@ -17,6 +17,8 @@ jobs:
         bundler-cache: true
 
     - name: Run Ruby tests
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
         bundle exec rake test
         bundle exec rubocop
