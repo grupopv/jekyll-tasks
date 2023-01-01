@@ -5,7 +5,7 @@ gemspec
 
 group :test do
   gem 'codecov', '~> 0.6', require: false
-  gem 'minitest', '~> 5.16'
+  gem 'minitest', '~> 5.17'
   gem 'rake', '~> 13.0'
   gem 'rubocop', '~> 1.39'
 end
