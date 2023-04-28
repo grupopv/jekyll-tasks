@@ -23,18 +23,27 @@ module Jekyll
 
       def all_related_exist
         errors = []
-        products = Products.filename_list
+        models = Products.model_list
         api_data.each do |key, related|
-          errors << "'#{key}' has duplicate related products" if related.length != related.uniq.length
-          related.each do |product|
-            errors << "Related '#{product}' (declared @ '#{key}') doesn't exist" unless products.include? product
-            errors << "Inception detected @ '#{key}' related product" if inception_detected?(products, product, key)
-          end
+          next unless models.include? key
+
+          errors += related_rules(key, related)
         end
         errors.empty? ? 'OK' : errors
       end
 
       private
+
+      def related_rules(key, related)
+        errors = []
+        products = Products.filename_list
+        errors << "'#{key}' has duplicate related products" if related.length != related.uniq.length
+        related.each do |product|
+          errors << "Related '#{product}' (declared @ '#{key}') doesn't exist" unless products.include? product
+          errors << "Inception detected @ '#{key}' related product" if inception_detected?(products, product, key)
+        end
+        errors
+      end
 
       def api_data
         YAML.load_file('./_data/api/yaml/related/products.yml')
