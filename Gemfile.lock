@@ -13,7 +13,7 @@ GEM
     docile (1.4.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
-    minitest (5.18.0)
+    minitest (5.20.0)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
@@ -52,7 +52,7 @@ PLATFORMS
 DEPENDENCIES
   codecov (~> 0.6)
   jekyll-tasks!
-  minitest (~> 5.18)
+  minitest (~> 5.20)
   rake (~> 13.0)
   rubocop (~> 1.56)
 
