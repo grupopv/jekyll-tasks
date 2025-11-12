@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'minitest', '~> 5.25'
+  gem 'minitest', '~> 5.26'
   gem 'rake', '~> 13.3'
   gem 'rubocop', '~> 1.62'
   gem 'simplecov', require: false
