@@ -29,7 +29,7 @@ module Jekyll
         products
       end
 
-      def product_without_father(data)
+      def product_without_father?(data)
         data['layout'].nil? && data['menu-father'].nil?
       end
 

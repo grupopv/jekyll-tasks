@@ -77,17 +77,17 @@ module Jekyll
       private
 
       def analyze_conflicts_without_properties(data, conflicts = [])
-        conflicts << "Product without father: '#{data['title']}'" if Products.product_without_father data
-        conflicts << "Menu without name: '#{data['title']}'" if menu_without_name data
-        conflicts << "Menu without father: '#{data['title']}'" if menu_without_father data
+        conflicts << "Product without father: '#{data['title']}'" if Products.product_without_father? data
+        conflicts << "Menu without name: '#{data['title']}'" if menu_without_name? data
+        conflicts << "Menu without father: '#{data['title']}'" if menu_without_father? data
         conflicts
       end
 
-      def menu_without_name(data)
+      def menu_without_name?(data)
         data['layout'] == 'grid' && data['menu-name'].nil?
       end
 
-      def menu_without_father(data)
+      def menu_without_father?(data)
         data['layout'] == 'grid' && data['menu-father'].nil? && data['permalink'].nil?
       end
 

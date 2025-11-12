@@ -7,11 +7,9 @@ module Jekyll
       extend self
 
       def get
-        collections = []
-        folders_starting_with_underscore.each do |collection|
-          collections << collection[3..]
+        folders_starting_with_underscore.map do |collection|
+          collection[3..]
         end
-        collections
       end
 
       private
