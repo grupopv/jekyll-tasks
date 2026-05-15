@@ -23,7 +23,7 @@ module Jekyll
       def model_list
         products = []
         path_list.each do |product|
-          data = YAML.load_file(product)
+          data = YAML.load_file(product, permitted_classes: [Date])
           products << data['title']
         end
         products
@@ -34,7 +34,7 @@ module Jekyll
       end
 
       def title(product)
-        data = YAML.load_file("#{PRODUCTS_PATH}#{product}#{EXTENSION}")
+        data = YAML.load_file("#{PRODUCTS_PATH}#{product}#{EXTENSION}", permitted_classes: [Date])
         data['title']
       end
 

@@ -56,7 +56,7 @@ module Jekyll
 
         files = markdown_files collection
         files.each do |file|
-          data = YAML.load_file(file)
+          data = YAML.load_file(file, permitted_classes: [Date])
           conflicts << analyze_conflicts_without_properties(data)
         end
 
@@ -66,7 +66,7 @@ module Jekyll
       def search_properties(collection, properties, result = [])
         files = markdown_files collection
         files.each do |file|
-          data = YAML.load_file(file)
+          data = YAML.load_file(file, permitted_classes: [Date])
           properties.each do |property|
             search_property result, data, property
           end
