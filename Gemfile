@@ -6,7 +6,7 @@ gemspec
 group :test do
   gem 'minitest', '~> 6.0'
   gem 'rake', '~> 13.4'
-  gem 'rubocop', '~> 1.87'
+  gem 'rubocop', '~> 1.88'
   gem 'simplecov', require: false
   gem 'simplecov-cobertura'
 end
